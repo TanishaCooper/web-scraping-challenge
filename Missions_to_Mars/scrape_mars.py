@@ -1,4 +1,4 @@
-# Part 2: MongaDB and Flask
+# Part 2/3: MongaDB and Flask
 
 # Automates browser actions
 from splinter import Browser
@@ -72,11 +72,61 @@ def scrape():
     mars_facts_df.columns=['Description', 'Value']
     mars_facts_df.set_index('Description', inplace=True)    
 
-    # Convert dataframe to HTML table string
+    # Convert dataframe to HTML table
     mars_facts_tr_html = mars_facts_df.to_html()
+
+    # Strip unwanted newlines to clean up the table
+    mars_facts_tr_html = mars_facts_tr_html.replace('\n', '')
+
+    # Strip table tag for easier html formatting
+    mars_facts_tr_html = mars_facts_tr_html.replace("<table border=\"1\" class=\"dataframe\">", "").\
+                                                                    replace("</table>","").strip()
 
     # 4. Mars Hemispheres
 
-    # 5. 
+    # Set link/url to a variable to visit Astrogeology Site
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+
+    # Create list variable to hold images and titles 
+    hemisphere_image_urls = []
+
+    # For loop to retrieve the image urls and titles of each hemisphere
+    for hemi in range(4): # 4 is the number of image urls/titles we have to loop through
+        browser.links.find_by_partial_text('Hemisphere')[hemi].click()  # Splinter used to find partial text in links 
+    
+        # HTML parser and create soup variable
+        html = browser.html
+        hemisphere_soup = soup(html, 'html.parser')
+    
+        # Web scraping using specific selector to locate the titles and image urls
+        title = hemisphere_soup.find('h2', class_='title').text
+        img_url = hemisphere_soup.find('li').a.get('href')
+    
+        # Store web scraping findings into a dictionary and append to list
+        hemispheres = {}
+        hemispheres['img_url'] = f'https://marshemispheres.com/{img_url}'
+        hemispheres['title'] = title
+        hemisphere_image_urls.append(hemispheres)
+    
+    # Repeat steps to browse all links
+    browser.back()
+    
+    # Quit browser
+    browser.quit()
+
+    # Store scaped values in a dictionary
+    mars_data = {
+        "news_title": news_title,
+        "news_p": news_p,
+        "featured_image_url": featured_image_url,
+        "mars_facts_tr_html": mars_facts_tr_html,
+        "hemisphere_image_urls": hemisphere_image_urls
+    }
+
+    # Returns results
+    return mars_data
+
+ 
 
   
