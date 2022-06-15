@@ -70,9 +70,7 @@ def featured_image(browser):
         return None
 
     featured_image_url = f'https://spaceimages-mars.com/{mars_img_rel_url}'
-        return featured_image_url
-
-
+    return featured_image_url
 
 def mars_facts():
     try:
