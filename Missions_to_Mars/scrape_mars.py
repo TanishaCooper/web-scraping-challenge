@@ -1,4 +1,4 @@
-# Part 2/3: MongaDB and Flask
+# Part 2: MongaDB
 
 # Automates browser actions
 from splinter import Browser
@@ -116,7 +116,7 @@ def scrape():
     browser.quit()
 
     # Store scaped values in a dictionary
-    mars_data = {
+    mars = {
         "news_title": news_title,
         "news_p": news_p,
         "featured_image_url": featured_image_url,
@@ -125,7 +125,7 @@ def scrape():
     }
 
     # Returns results
-    return mars_data
+    return mars
 
  
 
