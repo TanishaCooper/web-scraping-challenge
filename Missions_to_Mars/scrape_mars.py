@@ -8,8 +8,6 @@ import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
 
-
-
 # Execute all of the scraping code from 'missions_to_mars.ipynb' and return one Python dictionary containing all scraped data
 def scrape():
 
@@ -17,15 +15,15 @@ def scrape():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
-    news_title, news_p = mars_news(browser)
+    news_title, news_paragraph = mars_news(browser)
     hemisphere_image_urls = mars_hemis(browser)
 
     data = {
         "news_title": news_title,
-        "news_p": news_p,
+        "news_paragraph": news_paragraph,
         "featured_image_url": featured_image(browser),
-        "mars_facts_tr_html": mars_facts(),
-        "hemisphere_image_urls": hemisphere_image_urls,
+        "mars_facts": mars_facts(),
+        "hemispheres": hemisphere_image_urls,
         "last_modified": dt.datetime.now()
     }
     browser.quit()
