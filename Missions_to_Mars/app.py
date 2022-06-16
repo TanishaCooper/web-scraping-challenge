@@ -7,7 +7,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_pymongo import PyMongo
 
 # Create Flask app instance and use flask_pymongo to setup MongoDB connection
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__,template_folder='Templates')
 
 app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"  # Open MongoDB app to find MONGO_URL config [Flask-PyMongo - https://flask-pymongo.readthedocs.io/en/latest/]
 mongo = PyMongo(app)
