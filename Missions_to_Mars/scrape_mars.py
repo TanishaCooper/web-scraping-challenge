@@ -1,10 +1,9 @@
 # Part 2: MongaDB
 
 # Import necessary libraries for scraping
-from multiprocessing.connection import wait
-from splinter import Browser
+from splinter import Browser, browser
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as soup
 import pandas as pd
 import datetime as dt
 from webdriver_manager.chrome import ChromeDriverManager
@@ -24,8 +23,8 @@ def scrape():
     data = {
         "news_title": news_title,
         "news_p": news_p,
-        "featured_image_url": featured_image_url(browser),
-        "mars_facts_tr_html": mars_facts_tr_html(),
+        "featured_image_url": featured_image(browser),
+        "mars_facts_tr_html": mars_facts(),
         "hemisphere_image_urls": hemisphere_image_urls,
         "last_modified": dt.datetime.now()
     }
@@ -33,12 +32,11 @@ def scrape():
     return data
 
 
-
-def mars_news(broswer):
+def mars_news(browser):
     url = 'https://redplanetscience.com/'
     browser.visit(url)
 
-    broswer.is_element_present_by_css('div.list_text', wait_time=1)
+    browser.is_element_present_by_css('div.list_text', wait_time=1)
 
     html = browser.html
     news_soup = soup(html, 'html.parser')
@@ -107,7 +105,7 @@ def mars_hemis(browser):
     return hemisphere_image_urls
 
 if __name__=="__main__":
-    print(scrape_all())
+    print(scrape())
 
 
   
