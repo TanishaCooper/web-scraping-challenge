@@ -76,8 +76,11 @@ def mars_facts():
 
     mars_facts_df.columns=['Description', 'Mars', 'Earth']
     mars_facts_df.set_index('Description', inplace=True)
+    mars_facts_tr_html = mars_facts_df.to_html()
+    mars_facts_tr_html = mars_facts_tr_html.replace('\n', '')
+    mars_facts_tr_html = mars_facts_tr_html.replace("<table border=\"1\" class=\"dataframe\">", "").replace("</table>","").strip()
 
-    return mars_facts_df.to_html()
+    return mars_facts_tr_html.to_html()
 
 
 def mars_hemis(browser):
