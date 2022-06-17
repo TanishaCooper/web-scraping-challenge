@@ -21,7 +21,7 @@ def home():
 def scrape():
     data = mongo.db.data
     mars_data = scrape_mars.scrape()
-    data.update({}, mars_data, upsert=True)
+    data.update_one({}, {"$set": mars_data}, upsert=True)
     
     return redirect('/', code=302)
 
