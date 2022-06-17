@@ -70,11 +70,11 @@ def featured_image(browser):
 
 def mars_facts():
     try:
-        mars_facts_df = pd.read_html('https://galaxyfacts-mars.com')[1]
+        mars_facts_df = pd.read_html('https://galaxyfacts-mars.com')[0]
     except BaseException:
         return None
 
-    mars_facts_df.columns=['Description', 'Value']
+    mars_facts_df.columns=['Description', 'Mars', 'Earth']
     mars_facts_df.set_index('Description', inplace=True)
 
     return mars_facts_df.to_html()

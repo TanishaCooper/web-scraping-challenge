@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https:maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> 
 </head>
 <body>
-   <div class="container">
+   <div class="container" style="background-color:antiquewhite">
         <!-- Jumbotron and Header-->
         <div class="jumbotron text-center" style="background-image: url(https://marshemispheres.com/images/full.jpg);">
             <h1 style="color:white">Mission to Mars</h1>
-            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data</a></p>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" data-toggle="tooltip" title="Scrape Data" role="button">Scrape Data</a></p>
         </div>
 
         <!--Mars News Section-->
@@ -20,7 +20,7 @@
             <div class="col-md-12 text-center">
                 <div class="media">
                     <div class="media-body">
-                        <h2>Latest Mars News</h2>
+                        <h2 style="color:darkred"><strong>Latest Mars News</strong></h2>
                         <h4 class="media-heading">{{data.news_title }}</h4>
                         <p>{{data.news_paragraph}}</p>
                     </div>
@@ -41,7 +41,7 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="row" id="mars-facts">
                     <h2>Mars Facts</h2>
-                    <table class="table table-striped">{{data.mars_facts | safe }}</table>
+                    <table class="table table-bordered border-primary">{{data.mars_facts | safe }}</table>
                 </div>
             </div>
         </div>
