@@ -13,7 +13,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_app")
 
 # Define your routes that renders index.html template and finds documents from MongoDB
 @app.route("/")
-def home():
+def index():
     data = mongo.db.data.find_one()
     return render_template("index.html", data=data)
 
