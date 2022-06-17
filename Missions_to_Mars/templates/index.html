@@ -11,7 +11,7 @@
    <div class="container">
         <!-- Jumbotron and Header-->
         <div class="jumbotron text-center" style="background-image: url(https://marshemispheres.com/images/full.jpg);">
-            <h1>Missions to Mars</h1>
+            <h1 style="color:white">Mission to Mars</h1>
             <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Data</a></p>
         </div>
 
@@ -30,7 +30,7 @@
 
         <!--Featured Image and Facts Table Section-->
         <div class="row" id="mars_featured-image">
-            <div class="col-md-8">
+            <div class="col-lg-8 col-md-8 col-sm-12">
                 <h2>Mars Featured Images</h2>
 
                 <img src="{{data.featured_image_url | default('static/images/error.png', true) }}" 
@@ -38,10 +38,10 @@
                 alt="Responsive image"/>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="row" id="mars-facts">
                     <h2>Mars Facts</h2>
-                    <table class="table table-bordered">{{data.mars_facts | safe }}</table>
+                    <table class="table table-striped">{{data.mars_facts | safe }}</table>
                 </div>
             </div>
         </div>
